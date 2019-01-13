@@ -16,7 +16,11 @@ public class _05_LongChipCompetition {
 
 	public static void main(String[] args) {
 		_05_LongChipCompetition lcc = new _05_LongChipCompetition();
-		
+	
+		lcc.initializeBeatles();
+		Beatle beatle = new Beatle("john");
+		beatle.getChips();
+		System.out.println(beatle.getChips());
 	}
 	
 	private void initializeBeatles() {
