@@ -1,9 +1,62 @@
 package _06_Intro_To_Hash_Maps;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-public class _02_LogSearch {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class _02_LogSearch implements ActionListener {
+	JFrame frame;
+	JPanel panel;
+	JButton add;
+	JButton search;
+	JButton view;
+	JButton remove;
+	JLabel label;
+	public static void main(String[] args) {
+		_02_LogSearch ha = new _02_LogSearch();
+		ha.getGoing();
+		
+		
+		
+	}
+	void getGoing() {
+		frame = new JFrame();
+		frame.setVisible(true);
+		
+		panel = new JPanel();
+		frame.add(panel);
+		
+		add = new JButton();
+		search = new JButton();
+		view = new JButton();
+		remove = new JButton();
+		add.setText("add entry");
+		search.setText("Search by ID");
+		view.setText("View List");
+		remove.setText("Remove entry");
+		panel.add(add);
+		panel.add(search);
+		panel.add(view);
+		panel.add(remove);
+		label = new JLabel();
+		panel.add(label);
+		panel.setSize(400,600);
+		frame.pack();
+		add.addActionListener(this);
+		search.addActionListener(this);
+		view.addActionListener(this);
+	
+	}
+	HashMap<Integer,String> stuff = new HashMap<Integer,String>();
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
+	 
 	 * Create a GUI with three buttons. 
 	 * Button 1: Add Entry
 	 * 				When this button is clicked, use an input dialog to ask the user to enter an ID number.
@@ -29,5 +82,24 @@ public class _02_LogSearch {
 	 * 				is not in the list. 
 	 *
 	 * */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+	JButton	ButtonPressed =(JButton)e.getSource();
+	if(ButtonPressed ==add) {
+	String id =JOptionPane.showInputDialog("Enter an ID number");
+	int ID = Integer.parseInt(id);
+	String name =JOptionPane.showInputDialog("Enter a name");
+	stuff.put(ID, name);}
+	else if(ButtonPressed ==search) {
+		String neID=JOptionPane.showInputDialog("Enter an ID number");
+		int n = Integer.parseInt(neID);
+		if(stuff.get(n)==null) {
+			label.setText("this entry does not exist");}
+			else {
+				label.setText(stuff.get(n));
+			}
+		}
+	}
 	
 }
