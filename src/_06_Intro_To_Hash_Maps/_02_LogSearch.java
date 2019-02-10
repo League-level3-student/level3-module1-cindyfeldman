@@ -1,8 +1,10 @@
 package _06_Intro_To_Hash_Maps;
 
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Stack;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,8 +24,7 @@ public class _02_LogSearch implements ActionListener {
 		_02_LogSearch ha = new _02_LogSearch();
 		ha.getGoing();
 		
-		
-		
+
 	}
 	void getGoing() {
 		frame = new JFrame();
@@ -31,7 +32,7 @@ public class _02_LogSearch implements ActionListener {
 		
 		panel = new JPanel();
 		frame.add(panel);
-		
+		panel.setSize(400,600);
 		add = new JButton();
 		search = new JButton();
 		view = new JButton();
@@ -46,11 +47,11 @@ public class _02_LogSearch implements ActionListener {
 		panel.add(remove);
 		label = new JLabel();
 		panel.add(label);
-		panel.setSize(400,600);
 		frame.pack();
 		add.addActionListener(this);
 		search.addActionListener(this);
 		view.addActionListener(this);
+		remove.addActionListener(this);
 	
 	}
 	HashMap<Integer,String> stuff = new HashMap<Integer,String>();
@@ -85,12 +86,14 @@ public class _02_LogSearch implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+	
 	JButton	ButtonPressed =(JButton)e.getSource();
 	if(ButtonPressed ==add) {
 	String id =JOptionPane.showInputDialog("Enter an ID number");
 	int ID = Integer.parseInt(id);
 	String name =JOptionPane.showInputDialog("Enter a name");
 	stuff.put(ID, name);}
+	
 	else if(ButtonPressed ==search) {
 		String neID=JOptionPane.showInputDialog("Enter an ID number");
 		int n = Integer.parseInt(neID);
@@ -98,8 +101,26 @@ public class _02_LogSearch implements ActionListener {
 			label.setText("this entry does not exist");}
 			else {
 				label.setText(stuff.get(n));
-			}
+			}}
+		
+	else if(ButtonPressed==view) {
+	for (int key: stuff.keySet()) {
+	
+		JOptionPane.showMessageDialog(null, "ID: " + key +"  Name: "+ stuff.get(key));
+	}
+	}
+	else if(ButtonPressed ==remove) {
+		String r =JOptionPane.showInputDialog("enter an Id you would like removed");
+		int re = Integer.parseInt(r);
+		if(stuff.get(re) ==null) {
+			label.setText("this entry does not exist");
+		}
+		else {
+			label.setText(stuff.remove(re));
 		}
 	}
+
+		}
+		
+		}
 	
-}
